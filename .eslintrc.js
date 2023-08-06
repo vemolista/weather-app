@@ -30,6 +30,6 @@ module.exports = {
         "@typescript-eslint"
     ],
     "rules": {
-        "trailingComma": "all",
+        "trailingComma": 0,
     }
 }

@@ -5,6 +5,7 @@
 		"module": "ES2020",
 		"target": "es2019",
 		"outDir": "./dist",
-		"strict": true
+		"strict": true,
+		"moduleResolution": "node",
 	}
 }
