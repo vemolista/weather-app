@@ -7,7 +7,23 @@
 		<script src="./dist/weather.js" type="module"></script>
 		<title>Weather</title>
 	</head>
-	<body class="m-2 flex border-y-2 p-8 underline">
-		<h1 class="bg-blue-300 font-bold">Hello world 132!</h1>
+	<body class="m-10">
+		<h1 class="text-3xl font-bold">Hello world!</h1>
+		<label class="mt-4 block" for="apiKey"
+			>API Key for weatherapi.com</label
+		>
+		<input
+			id="apiKey"
+			type="text"
+			class="block rounded border border-solid border-black"
+		/>
+		<button
+			id="getWeather"
+			class="mt-4 block rounded border border-black px-4 py-2"
+			>Get weather in Sydney</button
+		>
+		<div class="mt-8 flex flex-col border border-black p-4">
+			<p>Sydney</p>
+		</div>
 	</body>
 </html>

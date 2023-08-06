@@ -1,12 +1,12 @@
 "use strict";
-const SYDNEY = {
-    latitude: "-33.88543635880696",
-    longitude: "151.27049577010456",
-};
-const excludeEverythingButCurrent = "minutely,hourly,daily,alerts";
+const inputAPIKey = document.getElementById("apiKey");
+const buttonGetWeather = document.getElementById("getWeather");
+const city = "Sydney";
 async function fetchWeather() {
+    const APIKey = inputAPIKey.value;
     try {
-        const response = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${SYDNEY.latitude}&lon=${SYDNEY.longitude}&exclude=${excludeEverythingButCurrent}&appid=${process.env.OPEN_WEATHER_API_KEY}`);
+        const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=${APIKey}&q=${city}&aqi=no
+			`);
         const data = await response.json();
         console.log(data);
     }
@@ -14,4 +14,6 @@ async function fetchWeather() {
         console.error("Error: ", Error);
     }
 }
-fetchWeather();
+buttonGetWeather.addEventListener("click", () => {
+    fetchWeather();
+});
