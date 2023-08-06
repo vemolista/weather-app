@@ -1,16 +1,3 @@
-function hello() {
-	return [
-		"some",
-		"other",
-		"other",
-		"other",
-		"other",
-		"other",
-		"other",
-		"other",
-		"other",
-		"other",
-		"other",
-		"other",
-	];
-}
+import "dotenv/config";
+
+process.env.OPEN_WEATHER_API_KEY;
