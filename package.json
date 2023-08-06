@@ -1,0 +1,33 @@
+{
+	"name": "weather-app",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "npm-run-all --parallel css tsc",
+		"css": "tailwindcss -w -i ./src/input.css -o ./dist/output.css",
+		"tsc": "tsc -w --preserveWatchOutput"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/vemolista/weather-app.git"
+	},
+	"author": "Tomas Vemola",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/vemolista/weather-app/issues"
+	},
+	"homepage": "https://github.com/vemolista/weather-app#readme",
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^6.2.1",
+		"@typescript-eslint/parser": "^6.2.1",
+		"eslint": "^8.46.0",
+		"eslint-config-prettier": "^9.0.0",
+		"npm-run-all": "^4.1.5",
+		"prettier": "^3.0.1",
+		"prettier-plugin-tailwindcss": "^0.4.1",
+		"tailwindcss": "^3.3.3",
+		"typescript": "^5.1.6"
+	}
+}
