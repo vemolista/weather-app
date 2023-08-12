@@ -9,19 +9,24 @@
 	</head>
 	<body class="m-10">
 		<h1 class="text-3xl font-bold">Hello world!</h1>
-		<label class="mt-4 block" for="apiKey"
-			>API Key for weatherapi.com</label
-		>
-		<input
-			id="apiKey"
-			type="text"
-			class="block rounded border border-solid border-black"
-		/>
-		<button
-			id="getWeather"
-			class="mt-4 block rounded border border-black px-4 py-2"
-			>Get weather in Sydney</button
-		>
+		<form>
+			<label class="mt-4 block" for="apiKey"
+				>API Key for weatherapi.com</label
+			>
+			<input
+				name="apiKey"
+				type="text"
+				class="block rounded border border-solid border-black"
+				required
+			/>
+			<button
+				id="getWeather"
+				type="submit"
+				class="mt-4 block rounded border border-black px-4 py-2"
+				>Get weather in Sydney</button
+			>
+		</form>
+
 		<div class="mt-8 flex flex-col border border-black p-4">
 			<p>Sydney</p>
 		</div>

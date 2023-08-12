@@ -1,9 +1,6 @@
-const inputAPIKey = document.getElementById("apiKey") as HTMLInputElement;
-const buttonGetWeather = document.getElementById(
-	"getWeather",
-) as HTMLButtonElement;
+const form = document.getElementsByTagName("form")[0];
 
-const city = "Sydney";
+const CITY = "Sydney";
 
 interface CurrentWeather {
 	location: {
@@ -47,8 +44,11 @@ interface CurrentWeather {
 	};
 }
 
-async function fetchWeather() {
-	const APIKey = inputAPIKey.value;
+async function fetchWeather(APIKey: string, city: string) {
+	if (!APIKey) {
+		console.error("No API Key provided");
+		return;
+	}
 
 	try {
 		const response = await fetch(
@@ -62,6 +62,10 @@ async function fetchWeather() {
 	}
 }
 
-buttonGetWeather.addEventListener("click", () => {
-	fetchWeather();
+form.addEventListener("submit", (e) => {
+	e.preventDefault();
+	if (!form.checkValidity()) return;
+	const formData = new FormData(form);
+
+	fetchWeather(formData.get("apiKey") as string, CITY);
 });
