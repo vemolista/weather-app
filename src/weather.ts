@@ -1,6 +1,19 @@
-const form = document.getElementsByTagName("form")[0];
+const form = document.getElementsByTagName("form")[0] as HTMLFormElement;
+const temperature = document.getElementById("temperature") as HTMLSpanElement;
+const city = document.getElementById("city") as HTMLSpanElement;
+const date = document.getElementById("date") as HTMLSpanElement;
+const time = document.getElementById("time") as HTMLSpanElement;
+const weatherIcon = document.getElementById("imageIcon") as HTMLImageElement;
+const weatherContainer = document.getElementById(
+	"weatherContainer",
+) as HTMLDivElement;
+const errorContainer = document.getElementById("error") as HTMLSpanElement;
 
 const CITY = "Sydney";
+
+interface MyError {
+	errorMessage: string;
+}
 
 interface CurrentWeather {
 	location: {
@@ -44,10 +57,13 @@ interface CurrentWeather {
 	};
 }
 
-async function fetchWeather(APIKey: string, city: string) {
+async function fetchWeather(
+	APIKey: string,
+	city: string,
+): Promise<CurrentWeather | MyError> {
 	if (!APIKey) {
 		console.error("No API Key provided");
-		return;
+		return { errorMessage: "No API Key provided" };
 	}
 
 	try {
@@ -55,10 +71,16 @@ async function fetchWeather(APIKey: string, city: string) {
 			`https://api.weatherapi.com/v1/current.json?key=${APIKey}&q=${city}&aqi=no
 			`,
 		);
-		const data: CurrentWeather = await response.json();
-		console.log(data);
-	} catch {
-		console.error("Error: ", Error);
+		if (response.ok) {
+			const data: CurrentWeather = await response.json();
+			return data;
+		}
+		return {
+			errorMessage: `Error, code ${response.status}`,
+		};
+	} catch (error) {
+		console.error("Error: ", error);
+		return { errorMessage: (error as Error).message };
 	}
 }
 
@@ -67,5 +89,21 @@ form.addEventListener("submit", (e) => {
 	if (!form.checkValidity()) return;
 	const formData = new FormData(form);
 
-	fetchWeather(formData.get("apiKey") as string, CITY);
+	const handleWeatherData = async () => {
+		const data = await fetchWeather(formData.get("apiKey") as string, CITY);
+
+		if ("errorMessage" in data) {
+			errorContainer.classList.remove("hidden", "invisible");
+			return;
+		}
+
+		temperature.textContent = `${data.current.temp_c.toString()}°C`;
+		city.textContent = data.location.name;
+		date.textContent = data.location.localtime.split(" ")[0];
+		time.textContent = data.location.localtime.split(" ")[1];
+		weatherIcon.src = data.current.condition.icon;
+		weatherContainer.classList.remove("hidden", "invisible");
+	};
+
+	handleWeatherData();
 });

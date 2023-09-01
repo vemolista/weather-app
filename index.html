@@ -7,28 +7,40 @@
 		<script src="./dist/weather.js" type="module"></script>
 		<title>Weather</title>
 	</head>
-	<body class="m-10">
-		<h1 class="text-3xl font-bold">Hello world!</h1>
+	<body class="mx-auto my-0 w-1/2 max-w-md text-gray-700">
 		<form>
-			<label class="mt-4 block" for="apiKey"
+			<label class="mb-1 mt-4 block text-sm" for="apiKey"
 				>API Key for weatherapi.com</label
 			>
 			<input
 				name="apiKey"
 				type="text"
-				class="block rounded border border-solid border-black"
+				class="block rounded border border-gray-300 bg-gray-200 px-2 py-1 shadow"
 				required
 			/>
 			<button
 				id="getWeather"
 				type="submit"
-				class="mt-4 block rounded border border-black px-4 py-2"
+				class="mt-4 block rounded border bg-blue-200 px-2 py-1 text-gray-800 shadow"
 				>Get weather in Sydney</button
 			>
 		</form>
-
-		<div class="mt-8 flex flex-col border border-black p-4">
-			<p>Sydney</p>
+		<p id="error" class="invisible hidden text-red-600"
+			>Something went wrong. Please try again.</p
+		>
+		<div
+			id="weatherContainer"
+			class="invisible mt-8 flex hidden flex-row items-center justify-between rounded-lg border bg-gray-100 p-8 shadow"
+		>
+			<div>
+				<h1 id="city" class="text-3xl"></h1>
+				<p id="date" class="mt-2 text-sm"></p>
+				<p id="time" class="text-sm"></p>
+			</div>
+			<div class="flex flex-row justify-center">
+				<img id="imageIcon" class="h-12 w-12" src="" />
+				<p id="temperature" class="ml-2 text-3xl"></p>
+			</div>
 		</div>
 	</body>
 </html>
