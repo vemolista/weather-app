@@ -4,7 +4,6 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
 		"dev": "npm-run-all --parallel css tsc",
 		"css": "tailwindcss -w -i ./src/input.css -o ./dist/output.css",
 		"tsc": "tsc -w --preserveWatchOutput"
